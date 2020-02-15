@@ -7,8 +7,8 @@ class PercolationSim extends React.Component {
     super(props);
     
     this.state = {
-      n: 10,
-      percolation: new Percolation(10),
+      n: 50,
+      percolation: new Percolation(50),
       speed: 500, 
       intervalId: null,
       running: false,
