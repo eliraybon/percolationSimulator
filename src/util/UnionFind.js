@@ -18,7 +18,7 @@ class UnionFind {
     }
   }
 
-  find(x, y) {
+  isConnected(x, y) {
     return this.root(x) === this.root(y);
   }
 
@@ -30,3 +30,5 @@ class UnionFind {
     return x;
   }
 }
+
+module.exports = UnionFind;
