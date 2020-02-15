@@ -7,8 +7,13 @@ class PercolationSim extends React.Component {
     super(props);
     
     this.state = {
-      n: 4,
-      percolation: new Percolation(4)
+      n: 10,
+      percolation: new Percolation(10),
+      speed: 500, 
+      intervalId: null,
+      running: false,
+      percolationThreshold: null,
+      loop: false
     }
   }
 
@@ -33,11 +38,46 @@ class PercolationSim extends React.Component {
   }
 
   finishSimulation = () => {
-    alert("Simulation complete")
+    const { percolation, percolationThreshold, n, loop } = this.state;
+    this.stop();
+    if (!percolationThreshold) {
+      this.setState({ percolationThreshold: percolation.openSites / n ** 2 });
+    } else {
+      const currentThreshold = percolation.openSites / n ** 2;
+      const newThreshold = (percolationThreshold + currentThreshold) / 2;
+      this.setState({ percolationThreshold: newThreshold });
+    }
+    if (loop) {
+      this.reset();
+      this.start();
+    }
   }
 
   reset = () => {
+    this.stop();
     this.setState({ percolation: new Percolation(this.state.n) });
+  }
+
+  start = () => {
+    clearInterval(this.state.intervalId);
+    const intervalId = setInterval(this.openRandomSite, this.state.speed);
+    this.setState({ intervalId, running: true });
+  }
+
+  stop = () => {
+    clearInterval(this.state.intervalId);
+    this.setState({ running: false });
+  }
+
+  updateSpeed = e => {
+    if (this.state.running) this.start();
+    this.setState({ speed: e.currentTarget.value });
+  }
+
+  toggleLoop = () => {
+    this.setState(state => {
+      return { loop: !state.loop }
+    });
   }
 
   render() {
@@ -45,7 +85,18 @@ class PercolationSim extends React.Component {
       <div className="percolation-sim">
         <button onClick={this.openRandomSite}>Random</button>
         <button onClick={this.reset}>Reset</button>
-        <Board n={4} percolation={ this.state.percolation } />
+        <button onClick={this.start}>Start</button>
+        <button onClick={this.stop}>Stop</button>
+        <button onClick={this.toggleLoop}>Loop {this.state.loop ? "On" : "off"}</button>
+        <input 
+          type="range" 
+          min={10} 
+          max={500}
+          value={this.state.speed}
+          onChange={this.updateSpeed}
+        />
+        <p>Percolation Threshold: {this.state.percolationThreshold || "---" }</p>
+        <Board n={this.state.n} percolation={ this.state.percolation } />
       </div>
     )
   }
