@@ -1,9 +1,10 @@
 import React from 'react';
+import PercolationSim from './components/PercolationSim';
 
 function App() {
   return (
     <main>
-      <h1>Hello world</h1>
+      <PercolationSim />
     </main>
   );
 }

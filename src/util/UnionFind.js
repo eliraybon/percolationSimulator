@@ -23,7 +23,7 @@ class UnionFind {
   }
 
   root(x) {
-    while (x != this.ids[x]) {
+    while (x !== this.ids[x]) {
       this.ids[x] = this.ids[this.ids[x]];
       x = this.ids[x];
     }

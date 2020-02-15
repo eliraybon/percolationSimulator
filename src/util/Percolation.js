@@ -88,3 +88,5 @@ class Percolation {
   }
 
 }
+
+export default Percolation;
