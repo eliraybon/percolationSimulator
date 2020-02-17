@@ -25,6 +25,7 @@ main {
   overflow-y: hidden;
   align-items: center;
   height: 100vh;
+  background: gray;
 }
 
 ul {

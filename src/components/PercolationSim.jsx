@@ -7,13 +7,14 @@ class PercolationSim extends React.Component {
     super(props);
     
     this.state = {
-      n: 50,
-      percolation: new Percolation(50),
+      n: 25,
+      percolation: new Percolation(25),
       speed: 500, 
       intervalId: null,
       running: false,
+      percolates: false,
       percolationThreshold: null,
-      loop: false
+      loop: false,
     }
   }
 
@@ -29,6 +30,7 @@ class PercolationSim extends React.Component {
       percolation.open(randRow, randCol);
       this.setState({ percolation });
     } else {
+      this.setState({ percolates: true });
       this.finishSimulation();
     }
   }
@@ -55,10 +57,11 @@ class PercolationSim extends React.Component {
 
   reset = () => {
     this.stop();
-    this.setState({ percolation: new Percolation(this.state.n) });
+    this.setState({ percolation: new Percolation(this.state.n), percolates: false });
   }
 
   start = () => {
+    if (this.state.percolates) return;
     clearInterval(this.state.intervalId);
     const intervalId = setInterval(this.openRandomSite, this.state.speed);
     this.setState({ intervalId, running: true });
@@ -80,23 +83,66 @@ class PercolationSim extends React.Component {
     });
   }
 
+  renderStartStop = () => {
+    if (this.state.running) {
+      return (
+        <button onClick={this.stop}>
+          <img 
+            className="control-icon"
+            src="/assets/images/pause-circle-regular.svg" 
+            alt="" 
+          />
+        </button>
+      )
+    } else {
+      return (
+        <button onClick={this.start}>
+          <img 
+            className="control-icon"
+            src="/assets/images/play-circle-regular.svg" 
+            alt=""
+          />
+        </button>
+      )
+    }
+  }
+
+  renderLoop = () => {
+    const loop = this.state.loop ? "loop" : '';
+    return (
+      <button onClick={this.toggleLoop}>
+        <img
+          className={`control-icon ${loop}`}
+          src="/assets/images/repeat-solid.svg"
+          alt=""
+        />
+      </button>
+    )
+  }
+
   render() {
+
     return (
       <div className="percolation-sim">
-        <button onClick={this.openRandomSite}>Random</button>
-        <button onClick={this.reset}>Reset</button>
-        <button onClick={this.start}>Start</button>
-        <button onClick={this.stop}>Stop</button>
-        <button onClick={this.toggleLoop}>Loop {this.state.loop ? "On" : "off"}</button>
-        <input 
-          type="range" 
-          min={10} 
-          max={500}
-          value={this.state.speed}
-          onChange={this.updateSpeed}
+        <div className="controls">
+          <h1 className="title">Percolation Simulator</h1>
+          {this.renderStartStop()}
+          <button onClick={this.reset}>Reset</button>
+          {this.renderLoop()}
+          <input
+            type="range"
+            min={10}
+            max={500}
+            value={this.state.speed}
+            onChange={this.updateSpeed}
+          />
+          <p>Percolation Threshold: {this.state.percolationThreshold || "---"}</p>
+        </div>
+
+        <Board 
+          n={this.state.n} 
+          percolation={ this.state.percolation } 
         />
-        <p>Percolation Threshold: {this.state.percolationThreshold || "---" }</p>
-        <Board n={this.state.n} percolation={ this.state.percolation } />
       </div>
     )
   }

@@ -11,8 +11,8 @@
   box-sizing: border-box;
   border-top: 2px solid black;
   border-left:2px solid black;
-  width: 2%;
-  height: 2%;
+  width: 4%;
+  height: 4%;
   height: auto;
   background: blue;
 }
@@ -27,4 +27,9 @@
 
 .full {
   background: blue;
+  background: rgb(55, 216, 247);
+}
+
+.percolates {
+  background: rgb(55, 216, 247);
 }
