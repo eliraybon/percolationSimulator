@@ -1,14 +1,14 @@
 .board {
-  /* width: 40vw;
-  height: 40vw; */
+  /* width: 42vw;
+  height: 42vw; */
   /* min-width: 500px;
   min-height: 500px; */
-  width: 500px;
-  height: 500px;
+  width: 502px;
+  height: 502px;
   display: flex;
   flex-wrap: wrap;
   border: 1px solid black;
-  box-sizing: border-box;
+  /* box-sizing: border-box; */
 }
 
 .site {
@@ -16,7 +16,8 @@
   border: 1px solid black;
   width: 4%;
   height: 4%;
-  height: auto;
+  /* width: 20px;
+  height: 20px; */
   background: blue;
 }
 

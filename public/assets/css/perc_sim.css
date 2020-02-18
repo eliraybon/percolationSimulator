@@ -10,8 +10,7 @@
   padding: 10px;
   background:rgb(55, 216, 247);
   margin-right: 50px;
-  width: 10vw;
-  min-width: 350px;
+  width: 350px;
   height: fit-content;
   box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0,0,0,0);
 }
@@ -57,9 +56,64 @@
   margin: 0 auto;
 }
 
+.speed-slider {
+  -webkit-transform: rotateY(180deg);
+  -moz-transform: rotateY(180deg);
+  -ms-transform: rotateY(180deg);
+  -o-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+}
+
 @media only screen and (max-width: 1200px) {
   .percolation-sim {
     flex-direction: column;
+    align-items: center;
   }
 
+  .controls {
+    margin: 0 0;
+    margin-bottom: 30px;
+  }
+
+  .speed-and-threshold {
+    display: none;
+  }
+
+  .title {
+    font-size: 20px;
+  }
+
+  .buttons {
+    margin: 5px auto;
+    margin-top: 15px;
+  }
+
+  .control-icon {
+    width: 25px;
+    height: 25px;
+  }
+
+  .play-button {
+    width: 30px;
+    height: 30px;
+  }
+
+  .board {
+    width: 402px;
+    height: 402px;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .board {
+    width: 302px;
+    height: 302px;
+  }
+}
+
+@media only screen and (min-width: 2000px) {
+  .board {
+    width: 902px;
+    height: 902px;
+  }
 }

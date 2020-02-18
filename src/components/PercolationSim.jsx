@@ -9,7 +9,7 @@ class PercolationSim extends React.Component {
     this.state = {
       n: 25,
       percolation: new Percolation(25),
-      speed: 500, 
+      speed: 250, 
       intervalId: null,
       running: false,
       percolates: false,
@@ -166,6 +166,7 @@ class PercolationSim extends React.Component {
             <div className="speed-control">
               <p className="speed-text">Speed:</p>
               <input
+                className="speed-slider"
                 type="range"
                 min={10}
                 max={500}
