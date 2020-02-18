@@ -61,7 +61,10 @@ class PercolationSim extends React.Component {
   }
 
   start = () => {
-    if (this.state.percolates) return;
+    if (this.state.percolates) {
+      this.reset();
+      return;
+    }
     clearInterval(this.state.intervalId);
     const intervalId = setInterval(this.openRandomSite, this.state.speed);
     this.setState({ intervalId, running: true });
@@ -88,7 +91,7 @@ class PercolationSim extends React.Component {
       return (
         <button onClick={this.stop}>
           <img 
-            className="control-icon"
+            className="control-icon play-button"
             src="/assets/images/pause-circle-regular.svg" 
             alt="" 
           />
@@ -98,7 +101,7 @@ class PercolationSim extends React.Component {
       return (
         <button onClick={this.start}>
           <img 
-            className="control-icon"
+            className="control-icon play-button"
             src="/assets/images/play-circle-regular.svg" 
             alt=""
           />
@@ -108,35 +111,58 @@ class PercolationSim extends React.Component {
   }
 
   renderLoop = () => {
-    const loop = this.state.loop ? "loop" : '';
-    return (
-      <button onClick={this.toggleLoop}>
-        <img
-          className={`control-icon ${loop}`}
-          src="/assets/images/repeat-solid.svg"
-          alt=""
-        />
-      </button>
-    )
+    if (!this.state.loop) {
+      return (
+        <button onClick={this.toggleLoop}>
+          <img
+            className="control-icon"
+            src="/assets/images/repeat-solid.svg"
+            alt=""
+          />
+        </button>
+      )
+    } else {
+      return (
+        <button onClick={this.toggleLoop}>
+          <img
+            className="control-icon"
+            src="/assets/images/repeat-on.svg"
+            alt=""
+          />
+        </button>
+      )
+    }
   }
 
   render() {
-
     return (
       <div className="percolation-sim">
         <div className="controls">
           <h1 className="title">Percolation Simulator</h1>
-          {this.renderStartStop()}
-          <button onClick={this.reset}>Reset</button>
-          {this.renderLoop()}
-          <input
-            type="range"
-            min={10}
-            max={500}
-            value={this.state.speed}
-            onChange={this.updateSpeed}
-          />
-          <p>Percolation Threshold: {this.state.percolationThreshold || "---"}</p>
+          <div className="buttons">
+            {this.renderStartStop()}
+            {this.renderLoop()}
+            <button onClick={this.reset}>
+              <img
+                className="control-icon"
+                src="/assets/images/trash-alt-solid.svg"
+                alt=""
+              />
+            </button>
+          </div>
+          <div className="speed-and-threshold">
+            <div className="speed-control">
+              <p className="speed-text">Speed:</p>
+              <input
+                type="range"
+                min={10}
+                max={500}
+                value={this.state.speed}
+                onChange={this.updateSpeed}
+              />
+            </div>
+            <p>Avg. Threshold: {this.state.percolationThreshold || "---"}</p>
+          </div>
         </div>
 
         <Board 

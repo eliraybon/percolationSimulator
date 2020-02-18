@@ -4,6 +4,9 @@
 }
 
 .controls {
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
   border-radius: 10px;
   padding: 10px;
   background:rgb(55, 216, 247);
@@ -13,9 +16,30 @@
   box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0,0,0,0);
 }
 
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  width: 90%;
+  margin: 20px auto;
+}
+
+.speed-text {
+  margin-right: 10px;
+}
+
+.speed-control { 
+  display: flex;
+}
+
 .control-icon {
-  width: 20px;
-  height: 20px;
+  width: 25px;
+  height: 25px;
+}
+
+.play-button {
+  width: 40px;
+  height: 40px;
 }
 
 .loop {
@@ -26,4 +50,9 @@
   font-family: 'Alfa Slab One', cursive;
   font-size: 25px;
   text-align: center;
+}
+
+.speed-and-threshold {
+  width: 90%;
+  margin: 0 auto;
 }
