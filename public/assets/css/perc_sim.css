@@ -6,12 +6,12 @@
 .controls {
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
   border-radius: 10px;
   padding: 10px;
   background:rgb(55, 216, 247);
-  margin-right: 20px;
-  width: 350px;
+  margin-right: 50px;
+  width: 10vw;
+  min-width: 350px;
   height: fit-content;
   box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0,0,0,0);
 }
@@ -55,4 +55,11 @@
 .speed-and-threshold {
   width: 90%;
   margin: 0 auto;
+}
+
+@media only screen and (max-width: 1200px) {
+  .percolation-sim {
+    flex-direction: column;
+  }
+
 }

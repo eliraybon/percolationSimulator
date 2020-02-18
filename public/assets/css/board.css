@@ -1,16 +1,19 @@
 .board {
+  /* width: 40vw;
+  height: 40vw; */
+  /* min-width: 500px;
+  min-height: 500px; */
   width: 500px;
   height: 500px;
   display: flex;
   flex-wrap: wrap;
-  border-bottom: 2px solid black;
-  border-right: 2px solid black;
+  border: 1px solid black;
+  box-sizing: border-box;
 }
 
 .site {
   box-sizing: border-box;
-  border-top: 2px solid black;
-  border-left:2px solid black;
+  border: 1px solid black;
   width: 4%;
   height: 4%;
   height: auto;

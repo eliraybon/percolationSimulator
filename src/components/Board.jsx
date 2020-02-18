@@ -4,7 +4,7 @@ class Board extends React.Component {
 
   renderGrid = () => {
     const { n, percolation, percolates } = this.props;
-    const done = percolates ? "" : ""
+    const done = percolates ? "percolates" : ""
     const grid = [];
     let key = 1;
     for (let row = 0; row < n; row++) {

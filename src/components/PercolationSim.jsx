@@ -18,6 +18,18 @@ class PercolationSim extends React.Component {
     }
   }
 
+  componentDidMount() {
+    document.addEventListener("keydown", e => {
+      if (e.keyCode === 32) {
+        e.preventDefault();
+        this.state.running ? this.stop() : this.start();
+      } else if (e.keyCode === 13) {
+        e.preventDefault();
+        this.reset();
+      }
+    })
+  }
+
   openRandomSite = () => {
     const { percolation } = this.state;
     if (!percolation.percolates()) {
@@ -76,8 +88,8 @@ class PercolationSim extends React.Component {
   }
 
   updateSpeed = e => {
-    if (this.state.running) this.start();
     this.setState({ speed: e.currentTarget.value });
+    if (this.state.running) this.start();
   }
 
   toggleLoop = () => {
