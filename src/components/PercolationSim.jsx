@@ -72,14 +72,19 @@ class PercolationSim extends React.Component {
     this.setState({ percolation: new Percolation(this.state.n), percolates: false });
   }
 
-  start = () => {
+  start = (speed) => {
     if (this.state.percolates) {
       this.reset();
       return;
     }
+    const intervalSpeed = speed || this.state.speed;
     clearInterval(this.state.intervalId);
-    const intervalId = setInterval(this.openRandomSite, this.state.speed);
-    this.setState({ intervalId, running: true });
+    const intervalId = setInterval(this.openRandomSite, intervalSpeed);
+    if (speed) {
+      this.setState({ intervalId, running: true, speed });
+    } else {
+      this.setState({ intervalId, running: true });
+    }
   }
 
   stop = () => {
@@ -88,8 +93,13 @@ class PercolationSim extends React.Component {
   }
 
   updateSpeed = e => {
-    this.setState({ speed: e.currentTarget.value });
-    if (this.state.running) this.start();
+    // this.setState({ speed: e.currentTarget.value });
+    const speed = e.currentTarget.value;
+    if (this.state.running) {
+      this.start(speed);
+    } else {
+      this.setState({ speed });
+    }
   }
 
   toggleLoop = () => {
