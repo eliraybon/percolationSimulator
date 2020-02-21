@@ -21,11 +21,18 @@ O(log(N)) time. If our N jumps from a million to a billion, we only have to do a
 A percolation system can be used to model the flow of electricity through conductors and insulators, the flow of water through a porous substance, or even connectivity on a social network. We say the system "percolates" if a site in the top row is connected to a site in the bottom row.
 
 <p align="center">
-  <img height="600px" src="https://github.com/eliraybon/percolationSimulator/blob/master/public/assets/readme/does_perc.png">
   <img 
-   height="600px" src="https://github.com/eliraybon/percolationSimulator/blob/master/public/assets/readme/does_not_perc.png"
+     height="600px" 
+     width="300px"
+     src="https://github.com/eliraybon/percolationSimulator/blob/master/public/assets/readme/does_perc.png">
+  <img 
+     height="600px" 
+     width="300px"
+     src="https://github.com/eliraybon/percolationSimulator/blob/master/public/assets/readme/does_not_perc.png"
   >
 </p>
+
+The first system above percolates because there is a path from the top to the bottom. The second does not. 
 
 We are interseted in calculating the percolation threshold, which is the average number of sites that need to be open for a system to percolate. We are using Monto Carlo simulation for these experiments, which relies on repeated random sampling to obtain a numerical result. By running millions of simulations at a large N, we can accurately zone in on the threshold. There are 2 really interesting things about this:
 
