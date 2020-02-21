@@ -22,11 +22,11 @@ A percolation system can be used to model the flow of electricity through conduc
 
 <p align="center">
   <img 
-     height="600px" 
+     height="333px" 
      width="300px"
      src="https://github.com/eliraybon/percolationSimulator/blob/master/public/assets/readme/does_perc.png">
   <img 
-     height="600px" 
+     height="333px" 
      width="300px"
      src="https://github.com/eliraybon/percolationSimulator/blob/master/public/assets/readme/does_not_perc.png"
   >
