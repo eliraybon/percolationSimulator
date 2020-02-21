@@ -13,7 +13,7 @@ Before we get into percolation, let's briefly discuss the data structure that al
 O(log(N)) time. If our N jumps from a million to a billion, we only have to do about 10 more operations! This efficiency is critical when running our percolation simulator on large inputs. I won't go into implementation details becuase UnionFind is another topic in and of itself, but here is a great slide that demonstrates the effect weighting has on the shape of our tree:
 
 <p align="center">
-  <img src="https://github.com/eliraybon/percolationSimulator/blob/master/public/assets/readme/weighted.PNG">
+  <img src="https://github.com/eliraybon/percolationSimulator/blob/master/public/assets/readme/weighted.png">
 </p>
 
 ## Percolation
@@ -21,9 +21,9 @@ O(log(N)) time. If our N jumps from a million to a billion, we only have to do a
 A percolation system can be used to model the flow of electricity through conductors and insulators, the flow of water through a porous substance, or even connectivity on a social network. We say the system "percolates" if a site in the top row is connected to a site in the bottom row.
 
 <p align="center">
-  <img height="600px" src="https://github.com/eliraybon/percolationSimulator/blob/master/public/assets/readme/does_perc.PNG">
+  <img height="600px" src="https://github.com/eliraybon/percolationSimulator/blob/master/public/assets/readme/does_perc.png">
   <img 
-   height="600px" src="https://github.com/eliraybon/percolationSimulator/blob/master/public/assets/readme/does_not_perc.PNG"
+   height="600px" src="https://github.com/eliraybon/percolationSimulator/blob/master/public/assets/readme/does_not_perc.png"
   >
 </p>
 
@@ -34,13 +34,13 @@ We are interseted in calculating the percolation threshold, which is the average
 2) When the number of open sites is below the threshold, the system will almost certainly not percolate. When the number of open sites is above the threshold, it almost certainly will. You can see this phase transition pictured in this graph:
 
 <p align="center">
-  <img src="https://github.com/eliraybon/percolationSimulator/blob/master/public/assets/readme/threshold.PNG">
+  <img src="https://github.com/eliraybon/percolationSimulator/blob/master/public/assets/readme/threshold.png">
 </p>
 
 Our percolation system is made up of an N x N grid of "sites". We also add two extra "virtual sites" called the "source" and the "sink". The source is connected to every site in the top row, and the sink is connected to every site in the bottom row. This way, all our UnionFind algorithm needs to do to check if the system percolates is check if the source is connected to the sink, which runs in O(log(N)) time. 
 
 <p align="center">
-  <img src="https://github.com/eliraybon/percolationSimulator/blob/master/public/assets/readme/sourceandsink.PNG">
+  <img src="https://github.com/eliraybon/percolationSimulator/blob/master/public/assets/readme/sourceandsink.png">
 </p>
 
 The alternative is the check if any of the sites in the top row conenct to any site in the bottom row, but this has a runtime of O(N^2) and isn't practical as N gets large. 
