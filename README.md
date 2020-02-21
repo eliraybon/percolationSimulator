@@ -1,7 +1,7 @@
 # <h1 align="center">Percolation Simulator</h1>
 
 <p align="center">
-  <img src="https://github.com/eliraybon/percolationSimulator/blob/master/public/assets/readme/sim.PNG">
+  <img src="https://github.com/eliraybon/percolationSimulator/blob/master/public/assets/readme/sim.png">
 </p>
 
 This data-visualization application calculates the percolation threshold of a system by running repeated Monte Carlo simulations and averaging the results. These simulations are powered by a weigted-quick-union implementation of the UnionFind data structure, which efficiently checks if two sites in the system are connected or not. I'll get into what that all means later... But first, let's quickly go over the controls!
