@@ -1,6 +1,8 @@
 # <h1 align="center">Percolation Simulator</h1>
 
-image 
+<p align="center">
+  <img src="https://github.com/eliraybon/percolationSimulator/blob/master/public/assets/readme/sim.PNG">
+</p>
 
 This data-visualization application calculates the percolation threshold of a system by running repeated Monte Carlo simulations and averaging the results. These simulations are powered by a weigted-quick-union implementation of the UnionFind data structure, which efficiently checks if two sites in the system are connected or not. I'll get into what that all means later... But first, let's quickly go over the controls!
 
@@ -10,10 +12,20 @@ The visualizer is really simple to use. To start/stop the simulation, just click
 Before we get into percolation, let's briefly discuss the data structure that allows us to efficiently run the simulations. It's called UnionFind (in particular, the weighted quick-union implementation), and it uses a tree-like structure to keep track of connections in a system. We say it's weighted because when you make a connection in the system, our algorithm garantees that the root of the smaller tree will always be connected to the root of the larger tree. This keeps the tree structure flattened (along with another technique called path compression), and this keeps things running in 
 O(log(N)) time. If our N jumps from a million to a billion, we only have to do about 10 more operations! This efficiency is critical when running our percolation simulator on large inputs. I won't go into implementation details becuase UnionFind is another topic in and of itself, but here is a great slide that demonstrates the effect weighting has on the shape of our tree:
 
+<p align="center">
+  <img src="https://github.com/eliraybon/percolationSimulator/blob/master/public/assets/readme/weighted.PNG">
+</p>
 
 ## Percolation
 
 A percolation system can be used to model the flow of electricity through conductors and insulators, the flow of water through a porous substance, or even connectivity on a social network. We say the system "percolates" if a site in the top row is connected to a site in the bottom row.
+
+<p align="center">
+  <img height="600px" src="https://github.com/eliraybon/percolationSimulator/blob/master/public/assets/readme/does_perc.PNG">
+  <img 
+   height="600px" src="https://github.com/eliraybon/percolationSimulator/blob/master/public/assets/readme/does_not_perc.PNG"
+  >
+</p>
 
 We are interseted in calculating the percolation threshold, which is the average number of sites that need to be open for a system to percolate. We are using Monto Carlo simulation for these experiments, which relies on repeated random sampling to obtain a numerical result. By running millions of simulations at a large N, we can accurately zone in on the threshold. There are 2 really interesting things about this:
 
@@ -21,9 +33,15 @@ We are interseted in calculating the percolation threshold, which is the average
 
 2) When the number of open sites is below the threshold, the system will almost certainly not percolate. When the number of open sites is above the threshold, it almost certainly will. You can see this phase transition pictured in this graph:
 
+<p align="center">
+  <img src="https://github.com/eliraybon/percolationSimulator/blob/master/public/assets/readme/threshold.PNG">
+</p>
+
 Our percolation system is made up of an N x N grid of "sites". We also add two extra "virtual sites" called the "source" and the "sink". The source is connected to every site in the top row, and the sink is connected to every site in the bottom row. This way, all our UnionFind algorithm needs to do to check if the system percolates is check if the source is connected to the sink, which runs in O(log(N)) time. 
 
-source and sink
+<p align="center">
+  <img src="https://github.com/eliraybon/percolationSimulator/blob/master/public/assets/readme/sourceandsink.PNG">
+</p>
 
 The alternative is the check if any of the sites in the top row conenct to any site in the bottom row, but this has a runtime of O(N^2) and isn't practical as N gets large. 
 
